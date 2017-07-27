@@ -1,0 +1,22 @@
+{
+  "name": "liri",
+  "version": "1.0.0",
+  "description": "A information gathering command line app",
+  "main": "liri.js",
+  "scripts": {
+    "test": "no"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xproctor90/Liri.git"
+  },
+  "keywords": [
+    "tweet/spotify/omdb"
+  ],
+  "author": "Xavier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xproctor90/Liri/issues"
+  },
+  "homepage": "https://github.com/xproctor90/Liri#readme"
+}
