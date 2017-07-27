@@ -54,7 +54,7 @@ function twitter(){
       }
     }
   });
-}
+}// end of tweets
 
 //Spotify function
 function spotify() {
@@ -87,7 +87,7 @@ function spotify() {
 
 }
 });
-}
+} // end of spotify
 
 //OMDB FUNCTION
 function movie() {
@@ -95,7 +95,7 @@ function movie() {
 var request = require('request');
 // set movie name equal to user input
 var movieName = value;
-var movieDefault = "Mr.Nobody";
+var movieDefault = "Superbad";
 // search url variable
 var url = 'http://www.omdbapi.com/?t=' + movieName + '&y=&plot=short&r=json';
 var urlDefault = 'http://www.omdbapi.com/?t=' + movieDefault + '&y=&plot=short&r=json';
@@ -132,4 +132,4 @@ var urlDefault = 'http://www.omdbapi.com/?t=' + movieDefault + '&y=&plot=short&r
             };//end of if
       });//end of request
     } // end of else
-  } // end of movie()
+  } // end of moviie
