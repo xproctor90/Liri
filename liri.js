@@ -24,16 +24,14 @@ switch(action){
 
 // Tweet function
 function twitter(){
-  // twitter keys variable, referencing the keys file and export line
-  var twitterKeys = require('./keys.js').twitterKeys;
-  // npm package
+   // npm package
   var Twitter = require('twitter');
   // assigning the keys
   var client = new Twitter ({
-		consumer_key: twitterKeys.consumer_key,
-		consumer_secret: twitterKeys.consumer_secret,
-		access_token_key: twitterKeys.access_token_key,
-		access_token_secret: twitterKeys.access_token_secret
+		consumer_key: twitterKeys.HJ0kADe9gCxzztUdSKmgSdpPT,
+		consumer_secret: twitterKeys.8Zb55FaEQWDA6VcEFzCWRwaJr45EDcDfS5yjK2yEREuI5Tn0Xd,
+		access_token_key: twitterKeys.2934272504-DndPHA67vb1GXpNaFnv7KIRLuc8P0kS4envw4pz,
+		access_token_secret: twitterKeys.tB6Sl7zDyrnSsvLM5nn4mSGdAln1goRg9JIXsdf9fSXrk,
   });
   // what to search for
   var params = {screen_name: 'xproctor90'};
