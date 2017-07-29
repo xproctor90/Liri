@@ -28,10 +28,10 @@ function twitter(){
   var Twitter = require('twitter');
   // assigning the keys
   var client = new Twitter ({
-		consumer_key: twitterKeys.HJ0kADe9gCxzztUdSKmgSdpPT,
-		consumer_secret: twitterKeys.8Zb55FaEQWDA6VcEFzCWRwaJr45EDcDfS5yjK2yEREuI5Tn0Xd,
-		access_token_key: twitterKeys.2934272504-DndPHA67vb1GXpNaFnv7KIRLuc8P0kS4envw4pz,
-		access_token_secret: twitterKeys.tB6Sl7zDyrnSsvLM5nn4mSGdAln1goRg9JIXsdf9fSXrk,
+		consumer_key: "HJ0kADe9gCxzztUdSKmgSdpPT",
+		consumer_secret: "8Zb55FaEQWDA6VcEFzCWRwaJr45EDcDfS5yjK2yEREuI5Tn0Xd",
+		access_token_key: "2934272504-DndPHA67vb1GXpNaFnv7KIRLuc8P0kS4envw4pz",
+		access_token_secret: "tB6Sl7zDyrnSsvLM5nn4mSGdAln1goRg9JIXsdf9fSXrk",
   });
   // what to search for
   var params = {screen_name: 'xproctor90'};
@@ -67,7 +67,8 @@ function spotify() {
     else {
     //console.log("/////////Data////////")
     //console.log(data);
-    //console.log("///////Data.tracks.items///////")
+    console.log("///////Data.tracks.items///////")
+    console.log(data.tracks)
     var spotifyCall = data.tracks.items[0];
     //console.log(spotifyCall);
     //console.log("/////////spotifyCall.artists[0].name////////");
@@ -83,51 +84,49 @@ function spotify() {
     var album = spotifyCall.album.name;
     console.log("Album: " + album);
 
-}
-});
+    }
+  });
 } // end of spotify
+
+function movieResponse(error, response, body) {
+    // we can move all this to a function as to adhere to DRY (don't repeat yourself) principle
+    // If the request is successful
+    if (error) {
+        console.log(error);
+    } else {
+        responseContent = JSON.parse(body);
+        // Parse the body and pull for each attribute
+        console.log("\n/////////////////MOVIE THIS////////////////\n")
+        console.log("Title: " + value);
+        console.log("Year: " + JSON.parse(body)["Year"]);
+        console.log("Rating: " + JSON.parse(body)["imdbRating"]);
+        console.log("Country of Production: " + JSON.parse(body)["Country"]);
+        console.log("Language: " + JSON.parse(body)["Language"]);
+        console.log("Plot: " + JSON.parse(body)["Plot"]);
+        console.log("Actors: " + JSON.parse(body)["Actors"]);
+    }
+}
 
 //OMDB FUNCTION
 function movie() {
   //npm package
-var request = require('request');
-// set movie name equal to user input
-var movieName = value;
-var movieDefault = "Superbad";
-// search url variable
-var url = 'http://www.omdbapi.com/?t=' + movieName + '&y=&plot=short&r=json';
-var urlDefault = 'http://www.omdbapi.com/?t=' + movieDefault + '&y=&plot=short&r=json';
+  var request = require('request');
+  // set movie name equal to user input
+  var movieName = value;
+  var movieDefault = "Superbad";
+  // search url variable
+  var url = 'http://www.omdbapi.com/?t=' + movieName + '&y=&plot=short&r=json';
+  var urlDefault = 'http://www.omdbapi.com/?t=' + movieDefault + '&y=&plot=short&r=json';
 
  // if the user entered a title, search that
- if (movieName != null) {
-    request(url, function (error, response, body) {
-      // If the request is successful
-      if (!error && response.statusCode == 200) {
-              // Parse the body and pull for each attribute
-              console.log("\n/////////////////MOVIE THIS////////////////\n")
-              console.log("Title: " + value);
-              console.log("Year: " + JSON.parse(body)["Year"]);
-              console.log("Rating: " + JSON.parse(body)["imdbRating"]);
-              console.log("Country of Production: " + JSON.parse(body)["Country"]);
-              console.log("Language: " + JSON.parse(body)["Language"]);
-              console.log("Plot: " + JSON.parse(body)["Plot"]);
-              console.log("Actors: " + JSON.parse(body)["Actors"]);
-            };//end of if
-      });//end of request
-
-    // if user doesn't enter a value, value will be set to Mr.Nobody
+    if (movieName != null) {
+      request(url, function (error, response, body) {
+        movieResponse(error, response, body); 
+        // if user doesn't enter a value, value will be set to Mr.Nobody
+      });
     } else {
       request(urlDefault, function (error, response, body) {
-        // If the request is successful (i.e. if the response status code is 200)
-        if (!error && response.statusCode == 200) {
-              console.log("Title: " + movieDefault);
-              console.log("Year: " + JSON.parse(body)["Year"]);
-              console.log("Rating: " + JSON.parse(body)["imdbRating"]);
-              console.log("Country of Production: " + JSON.parse(body)["Country"]);
-              console.log("Language: " + JSON.parse(body)["Language"]);
-              console.log("Plot: " + JSON.parse(body)["Plot"]);
-              console.log("Actors: " + JSON.parse(body)["Actors"]);
-            };//end of if
-      });//end of request
+        movieResponse(error, response, body); 
+      });
     } // end of else
   } // end of moviie
